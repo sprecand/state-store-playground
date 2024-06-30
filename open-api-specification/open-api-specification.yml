@@ -1,0 +1,244 @@
+openapi: 3.0.1
+info:
+  title: Open Api Specification
+  version: 1.0.0
+paths:
+  /items:
+    get:
+      operationId: findItems
+      summary: Retrieve a list of items
+      responses:
+        '200':
+          description: A list of items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./schemas/ItemOverview.yml
+  /items/{itemId}:
+    get:
+      operationId: findItemById
+      summary: Retrieve a single item by its ID
+      parameters:
+        - name: itemId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Details of the item
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/Item.yml
+        '404':
+          description: Item not found
+
+  /requests:
+    get:
+      operationId: listRequests
+      summary: List all requests
+      responses:
+        '200':
+          description: A list of requests
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./schemas/Request.yml
+  /requests/{requestId}:
+    get:
+      operationId: getRequestById
+      summary: Retrieve a request by its ID
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Request details
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/Request.yml
+        '404':
+          description: Request not found
+    delete:
+      operationId: deleteRequest
+      summary: Delete a request
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Request deleted
+    patch:
+      operationId: updateRequest
+      summary: Update a request partially
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/Request.yml
+      responses:
+        '200':
+          description: Updated request
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/Request.yml
+    post:
+      operationId: createSubRequest
+      summary: Create a sub-request under a request
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/Request.yml
+      responses:
+        '201':
+          description: Sub-request created
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/Request.yml
+  /requests/{requestId}/form1:
+    get:
+      operationId: getForm1
+      summary: Retrieve Form1 for a specific request
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Form1 details
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/Form1.yml
+    patch:
+      operationId: updateForm1
+      summary: Update Form1 details
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/Form1.yml
+      responses:
+        '200':
+          description: Updated Form1
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/Form1.yml
+
+  /requests/{requestId}/form2:
+    get:
+      operationId: getForm2
+      summary: Retrieve Form2 for a specific request
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Form1 details
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/Form2.yml
+    patch:
+      operationId: updateForm2
+      summary: Update Form2 details
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/Form2.yml
+      responses:
+        '200':
+          description: Updated Form2
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/Form2.yml
+  /requests/{requestId}/form3:
+    get:
+      operationId: getForm3
+      summary: Retrieve Form3 for a specific request
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Form3 details
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/Form3.yml
+    patch:
+      operationId: updateForm3
+      summary: Update Form3 details
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./schemas/Form3.yml
+      responses:
+        '200':
+          description: Updated Form3
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/Form3.yml

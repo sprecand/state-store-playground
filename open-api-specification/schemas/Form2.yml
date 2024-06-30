@@ -1,0 +1,10 @@
+text1:
+  type: string
+text2:
+  type: string
+date:
+  type: string
+  format: date
+number:
+  type: string
+  format: int64
