@@ -15,7 +15,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ./schemas/ItemOverview.yml
+                  $ref: ./schemas/ItemOverviewDto.yml
   /items/{itemId}:
     get:
       operationId: findItemById
@@ -32,7 +32,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./schemas/Item.yml
+                $ref: ./schemas/ItemDto.yml
         '404':
           description: Item not found
 
@@ -48,7 +48,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ./schemas/Request.yml
+                  $ref: ./schemas/RequestDto.yml
   /requests/{requestId}:
     get:
       operationId: getRequestById
@@ -65,7 +65,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./schemas/Request.yml
+                $ref: ./schemas/RequestDto.yml
         '404':
           description: Request not found
     delete:
@@ -94,14 +94,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./schemas/Request.yml
+              $ref: ./schemas/RequestDto.yml
       responses:
         '200':
           description: Updated request
           content:
             application/json:
               schema:
-                $ref: ./schemas/Request.yml
+                $ref: ./schemas/RequestDto.yml
     post:
       operationId: createSubRequest
       summary: Create a sub-request under a request
@@ -116,14 +116,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./schemas/Request.yml
+              $ref: ./schemas/RequestDto.yml
       responses:
         '201':
           description: Sub-request created
           content:
             application/json:
               schema:
-                $ref: ./schemas/Request.yml
+                $ref: ./schemas/RequestDto.yml
   /requests/{requestId}/form1:
     get:
       operationId: getForm1
@@ -140,7 +140,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./schemas/Form1.yml
+                $ref: ./schemas/Form1Dto.yml
     patch:
       operationId: updateForm1
       summary: Update Form1 details
@@ -155,14 +155,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./schemas/Form1.yml
+              $ref: ./schemas/Form1Dto.yml
       responses:
         '200':
           description: Updated Form1
           content:
             application/json:
               schema:
-                $ref: ./schemas/Form1.yml
+                $ref: ./schemas/Form1Dto.yml
 
   /requests/{requestId}/form2:
     get:
@@ -180,7 +180,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./schemas/Form2.yml
+                $ref: ./schemas/Form2Dto.yml
     patch:
       operationId: updateForm2
       summary: Update Form2 details
@@ -195,14 +195,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./schemas/Form2.yml
+              $ref: ./schemas/Form2Dto.yml
       responses:
         '200':
           description: Updated Form2
           content:
             application/json:
               schema:
-                $ref: ./schemas/Form2.yml
+                $ref: ./schemas/Form2Dto.yml
   /requests/{requestId}/form3:
     get:
       operationId: getForm3
@@ -219,7 +219,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ./schemas/Form3.yml
+                $ref: ./schemas/Form3Dto.yml
     patch:
       operationId: updateForm3
       summary: Update Form3 details
@@ -234,11 +234,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./schemas/Form3.yml
+              $ref: ./schemas/Form3Dto.yml
       responses:
         '200':
           description: Updated Form3
           content:
             application/json:
               schema:
-                $ref: ./schemas/Form3.yml
+                $ref: ./schemas/Form3Dto.yml
