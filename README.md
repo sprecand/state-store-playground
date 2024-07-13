@@ -1,6 +1,16 @@
 # State Store Playground
 The aim of this repo is to test multiple ways to us a state store for a web form application.
 
+## How to run
+- Start the backend via terminal in the folder form-service with 
+```mvn spring-boot:run```
+- Start the frontend via terminal in the folder form-ui with
+```ng serve```
+
+### Generate frontend client with open api specification
+- Run this command in the main project folder:
+```npx openapi-generator-cli generate -i open-api-specification/open-api-specification.yml -g typescript-angular -o form-ui/src/app/core/modules/openapi --additional-properties fileNaming=kebab-case,withInterfaces=true --generate-alias-as-model```
+
 ## Functionality
 - The user sees a personal item overview with some item information
 - The user is able to open a item to see more details of the item
