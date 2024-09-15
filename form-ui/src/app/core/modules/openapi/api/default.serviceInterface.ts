@@ -31,7 +31,7 @@ export interface DefaultServiceInterface {
 
     /**
      * Create a sub-request under a request
-     * 
+     * Create a sub-request under a request
      * @param requestId 
      * @param requestDto 
      */
@@ -39,61 +39,61 @@ export interface DefaultServiceInterface {
 
     /**
      * Delete a request
-     * 
+     * Delete a request
      * @param requestId 
      */
     deleteRequest(requestId: string, extraHttpRequestParams?: any): Observable<{}>;
 
     /**
      * Retrieve a single item by its ID
-     * 
+     * Retrieve a single item by its ID
      * @param itemId 
      */
     findItemById(itemId: string, extraHttpRequestParams?: any): Observable<ItemDto>;
 
     /**
      * Retrieve a list of items
-     * 
+     * Retrieve a list of items
      */
     findItems(extraHttpRequestParams?: any): Observable<Array<ItemOverviewDto>>;
 
     /**
      * Retrieve Form1 for a specific request
-     * 
+     * Retrieve Form1 for a specific request
      * @param requestId 
      */
     getForm1(requestId: string, extraHttpRequestParams?: any): Observable<Form1Dto>;
 
     /**
      * Retrieve Form2 for a specific request
-     * 
+     * Retrieve Form2 for a specific request
      * @param requestId 
      */
     getForm2(requestId: string, extraHttpRequestParams?: any): Observable<Form2Dto>;
 
     /**
      * Retrieve Form3 for a specific request
-     * 
+     * Retrieve Form3 for a specific request
      * @param requestId 
      */
     getForm3(requestId: string, extraHttpRequestParams?: any): Observable<Form3Dto>;
 
     /**
      * Retrieve a request by its ID
-     * 
+     * Retrieve a request by its ID
      * @param requestId 
      */
     getRequestById(requestId: string, extraHttpRequestParams?: any): Observable<RequestDto>;
 
     /**
      * List all requests
-     * 
+     * List all requests
      */
     listRequests(extraHttpRequestParams?: any): Observable<Array<RequestDto>>;
 
     /**
      * Update Form1 details
-     * 
+     * Update Form1 details
      * @param requestId 
      * @param form1Dto 
      */
@@ -101,7 +101,7 @@ export interface DefaultServiceInterface {
 
     /**
      * Update Form2 details
-     * 
+     * Update Form2 details
      * @param requestId 
      * @param form2Dto 
      */
@@ -109,7 +109,7 @@ export interface DefaultServiceInterface {
 
     /**
      * Update Form3 details
-     * 
+     * Update Form3 details
      * @param requestId 
      * @param form3Dto 
      */
@@ -117,7 +117,7 @@ export interface DefaultServiceInterface {
 
     /**
      * Update a request partially
-     * 
+     * Update a request partially
      * @param requestId 
      * @param requestDto 
      */

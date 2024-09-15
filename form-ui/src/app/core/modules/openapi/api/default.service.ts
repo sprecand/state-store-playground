@@ -45,7 +45,7 @@ import {
 })
 export class DefaultService implements DefaultServiceInterface {
 
-    protected basePath = 'http://localhost';
+    protected basePath = 'http://localhost:8080';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
     public encoder: HttpParameterCodec;
@@ -106,6 +106,7 @@ export class DefaultService implements DefaultServiceInterface {
     }
 
     /**
+     * Create a sub-request under a request
      * Create a sub-request under a request
      * @param requestId 
      * @param requestDto 
@@ -185,6 +186,7 @@ export class DefaultService implements DefaultServiceInterface {
 
     /**
      * Delete a request
+     * Delete a request
      * @param requestId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -247,6 +249,7 @@ export class DefaultService implements DefaultServiceInterface {
     }
 
     /**
+     * Retrieve a single item by its ID
      * Retrieve a single item by its ID
      * @param itemId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -312,6 +315,7 @@ export class DefaultService implements DefaultServiceInterface {
 
     /**
      * Retrieve a list of items
+     * Retrieve a list of items
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -371,6 +375,7 @@ export class DefaultService implements DefaultServiceInterface {
     }
 
     /**
+     * Retrieve Form1 for a specific request
      * Retrieve Form1 for a specific request
      * @param requestId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -436,6 +441,7 @@ export class DefaultService implements DefaultServiceInterface {
 
     /**
      * Retrieve Form2 for a specific request
+     * Retrieve Form2 for a specific request
      * @param requestId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -499,6 +505,7 @@ export class DefaultService implements DefaultServiceInterface {
     }
 
     /**
+     * Retrieve Form3 for a specific request
      * Retrieve Form3 for a specific request
      * @param requestId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -564,6 +571,7 @@ export class DefaultService implements DefaultServiceInterface {
 
     /**
      * Retrieve a request by its ID
+     * Retrieve a request by its ID
      * @param requestId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -628,6 +636,7 @@ export class DefaultService implements DefaultServiceInterface {
 
     /**
      * List all requests
+     * List all requests
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -687,6 +696,7 @@ export class DefaultService implements DefaultServiceInterface {
     }
 
     /**
+     * Update Form1 details
      * Update Form1 details
      * @param requestId 
      * @param form1Dto 
@@ -766,6 +776,7 @@ export class DefaultService implements DefaultServiceInterface {
 
     /**
      * Update Form2 details
+     * Update Form2 details
      * @param requestId 
      * @param form2Dto 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -844,6 +855,7 @@ export class DefaultService implements DefaultServiceInterface {
 
     /**
      * Update Form3 details
+     * Update Form3 details
      * @param requestId 
      * @param form3Dto 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
@@ -921,6 +933,7 @@ export class DefaultService implements DefaultServiceInterface {
     }
 
     /**
+     * Update a request partially
      * Update a request partially
      * @param requestId 
      * @param requestDto 

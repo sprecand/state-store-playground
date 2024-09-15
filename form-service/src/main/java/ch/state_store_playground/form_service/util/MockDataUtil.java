@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Component
 @Getter
@@ -21,9 +22,9 @@ public class MockDataUtil {
 
     @PostConstruct
     private void init(){
-        itemOverviewDtoList.add(new ItemOverviewDto().name("Holzstuhl"));
-        itemDtoList.add(new ItemDto().name("Holzstuhl").detail("Schöner Stuhl aus Holz"));
-        itemDtoList.add(new ItemDto().name("TV").detail("Grosser TV"));
-        requestDtoList.add(new RequestDto().name("Anfrage").detail("Ist der Stuhl defekt?"));
+        itemOverviewDtoList.add(new ItemOverviewDto().id(UUID.randomUUID()).name("Holzstuhl"));
+        itemDtoList.add(new ItemDto().id(UUID.randomUUID()).name("Holzstuhl").detail("Schöner Stuhl aus Holz"));
+        itemDtoList.add(new ItemDto().id(UUID.randomUUID()).name("TV").detail("Grosser TV"));
+        requestDtoList.add(new RequestDto().id(UUID.randomUUID()).name("Anfrage").detail("Ist der Stuhl defekt?"));
     }
 }
