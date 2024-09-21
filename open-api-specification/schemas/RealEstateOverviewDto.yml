@@ -1,15 +1,14 @@
 type: object
 properties:
-  text1:
-    type: string
-  text2:
-    type: string
-  date:
-    type: string
-    format: date
-  number:
-    type: string
-    format: int64
-  requestId:
+  id:
     type: string
     format: uuid
+  name:
+    type: string
+  description:
+    type: string
+  address:
+    type: string
+  cost:
+    type: string
+    format: integer

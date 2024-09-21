@@ -4,42 +4,42 @@ info:
   version: 1.0.0
 servers:
   - url: http://localhost:8080
-    description: Form Service
+    description: Real estate Service
 paths:
-  /items:
+  /real-estate:
     get:
-      operationId: findItems
-      summary: Retrieve a list of items
-      description: Retrieve a list of items
+      operationId: findRealEstate
+      summary: Retrieve a list of real estate
+      description: Retrieve a list of real estate
       responses:
         '200':
-          description: A list of items
+          description: A list of real estate
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: ./schemas/ItemOverviewDto.yml
-  /items/{itemId}:
+                  $ref: ./schemas/RealEstateOverviewDto.yml
+  /real-estate/{realEstateId}:
     get:
-      operationId: findItemById
-      summary: Retrieve a single item by its ID
-      description: Retrieve a single item by its ID
+      operationId: findRealEstateById
+      summary: Retrieve a single real estate item by its ID
+      description: Retrieve a single real estate item by its ID
       parameters:
-        - name: itemId
+        - name: realEstateId
           in: path
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: Details of the item
+          description: Details of the real estate item
           content:
             application/json:
               schema:
-                $ref: ./schemas/ItemDto.yml
+                $ref: ./schemas/RealEstateDto.yml
         '404':
-          description: Item not found
+          description: Real estate not found
 
   /requests:
     get:
@@ -54,7 +54,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ./schemas/RequestDto.yml
+                  $ref: ./schemas/RequestOverviewDto.yml
   /requests/{requestId}:
     get:
       operationId: getRequestById
@@ -134,11 +134,11 @@ paths:
             application/json:
               schema:
                 $ref: ./schemas/RequestDto.yml
-  /requests/{requestId}/form1:
+  /requests/{requestId}/persona-form:
     get:
-      operationId: getForm1
-      summary: Retrieve Form1 for a specific request
-      description: Retrieve Form1 for a specific request
+      operationId: getPersonaForm
+      summary: Retrieve persona form for a specific request
+      description: Retrieve persona form for a specific request
       parameters:
         - name: requestId
           in: path
@@ -147,15 +147,15 @@ paths:
             type: string
       responses:
         '200':
-          description: Form1 details
+          description: persona details
           content:
             application/json:
               schema:
-                $ref: ./schemas/Form1Dto.yml
+                $ref: ./schemas/request-form/PersonaFormDto.yml
     patch:
-      operationId: updateForm1
-      summary: Update Form1 details
-      description: Update Form1 details
+      operationId: updatePersonaForm
+      summary: Update PersonaForm details
+      description: Update PersonaForm details
       parameters:
         - name: requestId
           in: path
@@ -167,20 +167,20 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./schemas/Form1Dto.yml
+              $ref: ./schemas/request-form/PersonaFormDto.yml
       responses:
         '200':
-          description: Updated Form1
+          description: Updated PersonaForm
           content:
             application/json:
               schema:
-                $ref: ./schemas/Form1Dto.yml
+                $ref: ./schemas/request-form/PersonaFormDto.yml
 
   /requests/{requestId}/form2:
     get:
-      operationId: getForm2
-      summary: Retrieve Form2 for a specific request
-      description: Retrieve Form2 for a specific request
+      operationId: getFinancialForm
+      summary: Retrieve FinancialForm for a specific request
+      description: Retrieve FinancialForm for a specific request
       parameters:
         - name: requestId
           in: path
@@ -189,15 +189,15 @@ paths:
             type: string
       responses:
         '200':
-          description: Form1 details
+          description: FinancialForm details
           content:
             application/json:
               schema:
-                $ref: ./schemas/Form2Dto.yml
+                $ref: ./schemas/request-form/FinancialFormDto.yml
     patch:
-      operationId: updateForm2
-      summary: Update Form2 details
-      description: Update Form2 details
+      operationId: updateFinancialForm
+      summary: Update FinancialForm details
+      description: Update FinancialForm details
       parameters:
         - name: requestId
           in: path
@@ -209,19 +209,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./schemas/Form2Dto.yml
+              $ref: ./schemas/request-form/FinancialFormDto.yml
       responses:
         '200':
-          description: Updated Form2
+          description: Updated FinancialForm
           content:
             application/json:
               schema:
-                $ref: ./schemas/Form2Dto.yml
-  /requests/{requestId}/form3:
+                $ref: ./schemas/request-form/FinancialFormDto.yml
+  /requests/{requestId}/QuestionForm:
     get:
-      operationId: getForm3
-      summary: Retrieve Form3 for a specific request
-      description: Retrieve Form3 for a specific request
+      operationId: getQuestionForm
+      summary: Retrieve QuestionForm for a specific request
+      description: Retrieve QuestionForm for a specific request
       parameters:
         - name: requestId
           in: path
@@ -230,15 +230,15 @@ paths:
             type: string
       responses:
         '200':
-          description: Form3 details
+          description: QuestionForm details
           content:
             application/json:
               schema:
-                $ref: ./schemas/Form3Dto.yml
+                $ref: ./schemas/request-form/QuestionFormDto.yml
     patch:
-      operationId: updateForm3
-      summary: Update Form3 details
-      description: Update Form3 details
+      operationId: updateQuestionForm
+      summary: Update QuestionForm details
+      description: Update QuestionForm details
       parameters:
         - name: requestId
           in: path
@@ -250,11 +250,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ./schemas/Form3Dto.yml
+              $ref: ./schemas/request-form/QuestionFormDto.yml
       responses:
         '200':
-          description: Updated Form3
+          description: Updated QuestionForm
           content:
             application/json:
               schema:
-                $ref: ./schemas/Form3Dto.yml
+                $ref: ./schemas/request-form/QuestionFormDto.yml

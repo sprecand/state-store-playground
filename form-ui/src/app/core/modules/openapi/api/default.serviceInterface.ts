@@ -13,12 +13,13 @@ import { HttpHeaders }                                       from '@angular/comm
 
 import { Observable }                                        from 'rxjs';
 
-import { Form1Dto } from '../model/models';
-import { Form2Dto } from '../model/models';
-import { Form3Dto } from '../model/models';
-import { ItemDto } from '../model/models';
-import { ItemOverviewDto } from '../model/models';
+import { FinancialFormDto } from '../model/models';
+import { PersonaFormDto } from '../model/models';
+import { QuestionFormDto } from '../model/models';
+import { RealEstateDto } from '../model/models';
+import { RealEstateOverviewDto } from '../model/models';
 import { RequestDto } from '../model/models';
+import { RequestOverviewDto } from '../model/models';
 
 
 import { Configuration }                                     from '../configuration';
@@ -45,38 +46,38 @@ export interface DefaultServiceInterface {
     deleteRequest(requestId: string, extraHttpRequestParams?: any): Observable<{}>;
 
     /**
-     * Retrieve a single item by its ID
-     * Retrieve a single item by its ID
-     * @param itemId 
+     * Retrieve a list of real estate
+     * Retrieve a list of real estate
      */
-    findItemById(itemId: string, extraHttpRequestParams?: any): Observable<ItemDto>;
+    findRealEstate(extraHttpRequestParams?: any): Observable<Array<RealEstateOverviewDto>>;
 
     /**
-     * Retrieve a list of items
-     * Retrieve a list of items
+     * Retrieve a single real estate item by its ID
+     * Retrieve a single real estate item by its ID
+     * @param realEstateId 
      */
-    findItems(extraHttpRequestParams?: any): Observable<Array<ItemOverviewDto>>;
+    findRealEstateById(realEstateId: string, extraHttpRequestParams?: any): Observable<RealEstateDto>;
 
     /**
-     * Retrieve Form1 for a specific request
-     * Retrieve Form1 for a specific request
+     * Retrieve FinancialForm for a specific request
+     * Retrieve FinancialForm for a specific request
      * @param requestId 
      */
-    getForm1(requestId: string, extraHttpRequestParams?: any): Observable<Form1Dto>;
+    getFinancialForm(requestId: string, extraHttpRequestParams?: any): Observable<FinancialFormDto>;
 
     /**
-     * Retrieve Form2 for a specific request
-     * Retrieve Form2 for a specific request
+     * Retrieve persona form for a specific request
+     * Retrieve persona form for a specific request
      * @param requestId 
      */
-    getForm2(requestId: string, extraHttpRequestParams?: any): Observable<Form2Dto>;
+    getPersonaForm(requestId: string, extraHttpRequestParams?: any): Observable<PersonaFormDto>;
 
     /**
-     * Retrieve Form3 for a specific request
-     * Retrieve Form3 for a specific request
+     * Retrieve QuestionForm for a specific request
+     * Retrieve QuestionForm for a specific request
      * @param requestId 
      */
-    getForm3(requestId: string, extraHttpRequestParams?: any): Observable<Form3Dto>;
+    getQuestionForm(requestId: string, extraHttpRequestParams?: any): Observable<QuestionFormDto>;
 
     /**
      * Retrieve a request by its ID
@@ -89,31 +90,31 @@ export interface DefaultServiceInterface {
      * List all requests
      * List all requests
      */
-    listRequests(extraHttpRequestParams?: any): Observable<Array<RequestDto>>;
+    listRequests(extraHttpRequestParams?: any): Observable<Array<RequestOverviewDto>>;
 
     /**
-     * Update Form1 details
-     * Update Form1 details
+     * Update FinancialForm details
+     * Update FinancialForm details
      * @param requestId 
-     * @param form1Dto 
+     * @param financialFormDto 
      */
-    updateForm1(requestId: string, form1Dto: Form1Dto, extraHttpRequestParams?: any): Observable<Form1Dto>;
+    updateFinancialForm(requestId: string, financialFormDto: FinancialFormDto, extraHttpRequestParams?: any): Observable<FinancialFormDto>;
 
     /**
-     * Update Form2 details
-     * Update Form2 details
+     * Update PersonaForm details
+     * Update PersonaForm details
      * @param requestId 
-     * @param form2Dto 
+     * @param personaFormDto 
      */
-    updateForm2(requestId: string, form2Dto: Form2Dto, extraHttpRequestParams?: any): Observable<Form2Dto>;
+    updatePersonaForm(requestId: string, personaFormDto: PersonaFormDto, extraHttpRequestParams?: any): Observable<PersonaFormDto>;
 
     /**
-     * Update Form3 details
-     * Update Form3 details
+     * Update QuestionForm details
+     * Update QuestionForm details
      * @param requestId 
-     * @param form3Dto 
+     * @param questionFormDto 
      */
-    updateForm3(requestId: string, form3Dto: Form3Dto, extraHttpRequestParams?: any): Observable<Form3Dto>;
+    updateQuestionForm(requestId: string, questionFormDto: QuestionFormDto, extraHttpRequestParams?: any): Observable<QuestionFormDto>;
 
     /**
      * Update a request partially

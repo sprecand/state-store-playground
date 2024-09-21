@@ -1,14 +1,16 @@
 package ch.state_store_playground.form_service.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import ch.state_store_playground.form_service.dto.Form1Dto;
-import ch.state_store_playground.form_service.dto.Form2Dto;
-import ch.state_store_playground.form_service.dto.Form3Dto;
+import ch.state_store_playground.form_service.dto.FinancialFormDto;
+import ch.state_store_playground.form_service.dto.PersonaFormDto;
+import ch.state_store_playground.form_service.dto.QuestionFormDto;
 import ch.state_store_playground.form_service.dto.RequestDto;
+import ch.state_store_playground.form_service.dto.RequestOverviewDto;
 import ch.state_store_playground.form_service.util.MockDataUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,18 +33,18 @@ public class FormController implements RequestsApi {
 	}
 
 	@Override
-	public ResponseEntity<Form1Dto> _getForm1(String requestId) {
-		return ResponseEntity.ok(new Form1Dto());
+	public ResponseEntity<PersonaFormDto> _getPersonaForm(String requestId) {
+		return ResponseEntity.ok(new PersonaFormDto());
 	}
 
 	@Override
-	public ResponseEntity<Form2Dto> _getForm2(String requestId) {
-		return ResponseEntity.ok(new Form2Dto());
+	public ResponseEntity<FinancialFormDto> _getFinancialForm(String requestId) {
+		return ResponseEntity.ok(new FinancialFormDto());
 	}
 
 	@Override
-	public ResponseEntity<Form3Dto> _getForm3(String requestId) {
-		return ResponseEntity.ok(new Form3Dto());
+	public ResponseEntity<QuestionFormDto> _getQuestionForm(String requestId) {
+		return ResponseEntity.ok(new QuestionFormDto());
 	}
 
 	@Override
@@ -51,23 +53,23 @@ public class FormController implements RequestsApi {
 	}
 
 	@Override
-	public ResponseEntity<List<RequestDto>> _listRequests() {
-		return ResponseEntity.ok(mockDataUtil.getRequestDtoList());
+	public ResponseEntity<List<RequestOverviewDto>> _listRequests() {
+		return ResponseEntity.ok(mockDataUtil.getRequestOverviewDtoList());
 	}
 
 	@Override
-	public ResponseEntity<Form1Dto> _updateForm1(String requestId, @Valid Form1Dto form1Dto) {
-		return ResponseEntity.ok(new Form1Dto().text1("some text"));
+	public ResponseEntity<PersonaFormDto> _updatePersonaForm(String requestId, @Valid PersonaFormDto personaFormDto) {
+		return ResponseEntity.ok(new PersonaFormDto().firstName("some text"));
 	}
 
 	@Override
-	public ResponseEntity<Form2Dto> _updateForm2(String requestId, @Valid Form2Dto form2Dto) {
-		return ResponseEntity.ok(new Form2Dto().text1("some text"));
+	public ResponseEntity<FinancialFormDto> _updateFinancialForm(String requestId, @Valid FinancialFormDto financialFormDto) {
+		return ResponseEntity.ok(new FinancialFormDto().yearlyIncome(new BigDecimal(100000)));
 	}
 
 	@Override
-	public ResponseEntity<Form3Dto> _updateForm3(String requestId, @Valid Form3Dto form3Dto) {
-		return ResponseEntity.ok(new Form3Dto().text1("some text"));
+	public ResponseEntity<QuestionFormDto> _updateQuestionForm(String requestId, @Valid QuestionFormDto questionFormDto) {
+		return ResponseEntity.ok(new QuestionFormDto().question("Are cats allowed?"));
 	}
 
 	@Override

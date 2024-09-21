@@ -1,0 +1,17 @@
+type: object
+properties:
+  first-name:
+    type: string
+  second-name:
+    type: string
+  birthday:
+    type: string
+    format: date
+  civil-status:
+    type: string
+    format: enum
+    schema:
+      $ref: ./CivilStatusDto.yml
+  number-of-kids:
+    type: integer
+

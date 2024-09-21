@@ -19,17 +19,19 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { Form1Dto } from '../model/form1-dto';
+import { FinancialFormDto } from '../model/financial-form-dto';
 // @ts-ignore
-import { Form2Dto } from '../model/form2-dto';
+import { PersonaFormDto } from '../model/persona-form-dto';
 // @ts-ignore
-import { Form3Dto } from '../model/form3-dto';
+import { QuestionFormDto } from '../model/question-form-dto';
 // @ts-ignore
-import { ItemDto } from '../model/item-dto';
+import { RealEstateDto } from '../model/real-estate-dto';
 // @ts-ignore
-import { ItemOverviewDto } from '../model/item-overview-dto';
+import { RealEstateOverviewDto } from '../model/real-estate-overview-dto';
 // @ts-ignore
 import { RequestDto } from '../model/request-dto';
+// @ts-ignore
+import { RequestOverviewDto } from '../model/request-overview-dto';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -249,18 +251,79 @@ export class DefaultService implements DefaultServiceInterface {
     }
 
     /**
-     * Retrieve a single item by its ID
-     * Retrieve a single item by its ID
-     * @param itemId 
+     * Retrieve a list of real estate
+     * Retrieve a list of real estate
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public findItemById(itemId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<ItemDto>;
-    public findItemById(itemId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<ItemDto>>;
-    public findItemById(itemId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<ItemDto>>;
-    public findItemById(itemId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (itemId === null || itemId === undefined) {
-            throw new Error('Required parameter itemId was null or undefined when calling findItemById.');
+    public findRealEstate(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<RealEstateOverviewDto>>;
+    public findRealEstate(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<RealEstateOverviewDto>>>;
+    public findRealEstate(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<RealEstateOverviewDto>>>;
+    public findRealEstate(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
+        }
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/real-estate`;
+        return this.httpClient.request<Array<RealEstateOverviewDto>>('get', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                transferCache: localVarTransferCache,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Retrieve a single real estate item by its ID
+     * Retrieve a single real estate item by its ID
+     * @param realEstateId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public findRealEstateById(realEstateId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<RealEstateDto>;
+    public findRealEstateById(realEstateId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<RealEstateDto>>;
+    public findRealEstateById(realEstateId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<RealEstateDto>>;
+    public findRealEstateById(realEstateId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (realEstateId === null || realEstateId === undefined) {
+            throw new Error('Required parameter realEstateId was null or undefined when calling findRealEstateById.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -299,8 +362,8 @@ export class DefaultService implements DefaultServiceInterface {
             }
         }
 
-        let localVarPath = `/items/${this.configuration.encodeParam({name: "itemId", value: itemId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
-        return this.httpClient.request<ItemDto>('get', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/real-estate/${this.configuration.encodeParam({name: "realEstateId", value: realEstateId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}`;
+        return this.httpClient.request<RealEstateDto>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -314,144 +377,18 @@ export class DefaultService implements DefaultServiceInterface {
     }
 
     /**
-     * Retrieve a list of items
-     * Retrieve a list of items
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public findItems(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<ItemOverviewDto>>;
-    public findItems(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<ItemOverviewDto>>>;
-    public findItems(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<ItemOverviewDto>>>;
-    public findItems(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/items`;
-        return this.httpClient.request<Array<ItemOverviewDto>>('get', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                transferCache: localVarTransferCache,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Retrieve Form1 for a specific request
-     * Retrieve Form1 for a specific request
+     * Retrieve FinancialForm for a specific request
+     * Retrieve FinancialForm for a specific request
      * @param requestId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getForm1(requestId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Form1Dto>;
-    public getForm1(requestId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Form1Dto>>;
-    public getForm1(requestId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Form1Dto>>;
-    public getForm1(requestId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public getFinancialForm(requestId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<FinancialFormDto>;
+    public getFinancialForm(requestId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<FinancialFormDto>>;
+    public getFinancialForm(requestId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<FinancialFormDto>>;
+    public getFinancialForm(requestId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (requestId === null || requestId === undefined) {
-            throw new Error('Required parameter requestId was null or undefined when calling getForm1.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
-
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/requests/${this.configuration.encodeParam({name: "requestId", value: requestId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/form1`;
-        return this.httpClient.request<Form1Dto>('get', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                transferCache: localVarTransferCache,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Retrieve Form2 for a specific request
-     * Retrieve Form2 for a specific request
-     * @param requestId 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public getForm2(requestId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Form2Dto>;
-    public getForm2(requestId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Form2Dto>>;
-    public getForm2(requestId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Form2Dto>>;
-    public getForm2(requestId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (requestId === null || requestId === undefined) {
-            throw new Error('Required parameter requestId was null or undefined when calling getForm2.');
+            throw new Error('Required parameter requestId was null or undefined when calling getFinancialForm.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -491,7 +428,7 @@ export class DefaultService implements DefaultServiceInterface {
         }
 
         let localVarPath = `/requests/${this.configuration.encodeParam({name: "requestId", value: requestId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/form2`;
-        return this.httpClient.request<Form2Dto>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<FinancialFormDto>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -505,18 +442,18 @@ export class DefaultService implements DefaultServiceInterface {
     }
 
     /**
-     * Retrieve Form3 for a specific request
-     * Retrieve Form3 for a specific request
+     * Retrieve persona form for a specific request
+     * Retrieve persona form for a specific request
      * @param requestId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getForm3(requestId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Form3Dto>;
-    public getForm3(requestId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Form3Dto>>;
-    public getForm3(requestId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Form3Dto>>;
-    public getForm3(requestId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public getPersonaForm(requestId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PersonaFormDto>;
+    public getPersonaForm(requestId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PersonaFormDto>>;
+    public getPersonaForm(requestId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<PersonaFormDto>>;
+    public getPersonaForm(requestId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (requestId === null || requestId === undefined) {
-            throw new Error('Required parameter requestId was null or undefined when calling getForm3.');
+            throw new Error('Required parameter requestId was null or undefined when calling getPersonaForm.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -555,8 +492,73 @@ export class DefaultService implements DefaultServiceInterface {
             }
         }
 
-        let localVarPath = `/requests/${this.configuration.encodeParam({name: "requestId", value: requestId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/form3`;
-        return this.httpClient.request<Form3Dto>('get', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/requests/${this.configuration.encodeParam({name: "requestId", value: requestId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/persona-form`;
+        return this.httpClient.request<PersonaFormDto>('get', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                transferCache: localVarTransferCache,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Retrieve QuestionForm for a specific request
+     * Retrieve QuestionForm for a specific request
+     * @param requestId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getQuestionForm(requestId: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<QuestionFormDto>;
+    public getQuestionForm(requestId: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<QuestionFormDto>>;
+    public getQuestionForm(requestId: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<QuestionFormDto>>;
+    public getQuestionForm(requestId: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (requestId === null || requestId === undefined) {
+            throw new Error('Required parameter requestId was null or undefined when calling getQuestionForm.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
+        }
+
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/requests/${this.configuration.encodeParam({name: "requestId", value: requestId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/QuestionForm`;
+        return this.httpClient.request<QuestionFormDto>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -640,9 +642,9 @@ export class DefaultService implements DefaultServiceInterface {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public listRequests(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<RequestDto>>;
-    public listRequests(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<RequestDto>>>;
-    public listRequests(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<RequestDto>>>;
+    public listRequests(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<RequestOverviewDto>>;
+    public listRequests(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<RequestOverviewDto>>>;
+    public listRequests(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<RequestOverviewDto>>>;
     public listRequests(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
@@ -682,7 +684,7 @@ export class DefaultService implements DefaultServiceInterface {
         }
 
         let localVarPath = `/requests`;
-        return this.httpClient.request<Array<RequestDto>>('get', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<Array<RequestOverviewDto>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -696,101 +698,22 @@ export class DefaultService implements DefaultServiceInterface {
     }
 
     /**
-     * Update Form1 details
-     * Update Form1 details
+     * Update FinancialForm details
+     * Update FinancialForm details
      * @param requestId 
-     * @param form1Dto 
+     * @param financialFormDto 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateForm1(requestId: string, form1Dto: Form1Dto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Form1Dto>;
-    public updateForm1(requestId: string, form1Dto: Form1Dto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Form1Dto>>;
-    public updateForm1(requestId: string, form1Dto: Form1Dto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Form1Dto>>;
-    public updateForm1(requestId: string, form1Dto: Form1Dto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public updateFinancialForm(requestId: string, financialFormDto: FinancialFormDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<FinancialFormDto>;
+    public updateFinancialForm(requestId: string, financialFormDto: FinancialFormDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<FinancialFormDto>>;
+    public updateFinancialForm(requestId: string, financialFormDto: FinancialFormDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<FinancialFormDto>>;
+    public updateFinancialForm(requestId: string, financialFormDto: FinancialFormDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (requestId === null || requestId === undefined) {
-            throw new Error('Required parameter requestId was null or undefined when calling updateForm1.');
+            throw new Error('Required parameter requestId was null or undefined when calling updateFinancialForm.');
         }
-        if (form1Dto === null || form1Dto === undefined) {
-            throw new Error('Required parameter form1Dto was null or undefined when calling updateForm1.');
-        }
-
-        let localVarHeaders = this.defaultHeaders;
-
-        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
-        if (localVarHttpHeaderAcceptSelected === undefined) {
-            // to determine the Accept header
-            const httpHeaderAccepts: string[] = [
-                'application/json'
-            ];
-            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        }
-        if (localVarHttpHeaderAcceptSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
-        }
-
-        let localVarHttpContext: HttpContext | undefined = options && options.context;
-        if (localVarHttpContext === undefined) {
-            localVarHttpContext = new HttpContext();
-        }
-
-        let localVarTransferCache: boolean | undefined = options && options.transferCache;
-        if (localVarTransferCache === undefined) {
-            localVarTransferCache = true;
-        }
-
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-            'application/json'
-        ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected !== undefined) {
-            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
-        }
-
-        let responseType_: 'text' | 'json' | 'blob' = 'json';
-        if (localVarHttpHeaderAcceptSelected) {
-            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
-                responseType_ = 'text';
-            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
-                responseType_ = 'json';
-            } else {
-                responseType_ = 'blob';
-            }
-        }
-
-        let localVarPath = `/requests/${this.configuration.encodeParam({name: "requestId", value: requestId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/form1`;
-        return this.httpClient.request<Form1Dto>('patch', `${this.configuration.basePath}${localVarPath}`,
-            {
-                context: localVarHttpContext,
-                body: form1Dto,
-                responseType: <any>responseType_,
-                withCredentials: this.configuration.withCredentials,
-                headers: localVarHeaders,
-                observe: observe,
-                transferCache: localVarTransferCache,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * Update Form2 details
-     * Update Form2 details
-     * @param requestId 
-     * @param form2Dto 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public updateForm2(requestId: string, form2Dto: Form2Dto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Form2Dto>;
-    public updateForm2(requestId: string, form2Dto: Form2Dto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Form2Dto>>;
-    public updateForm2(requestId: string, form2Dto: Form2Dto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Form2Dto>>;
-    public updateForm2(requestId: string, form2Dto: Form2Dto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (requestId === null || requestId === undefined) {
-            throw new Error('Required parameter requestId was null or undefined when calling updateForm2.');
-        }
-        if (form2Dto === null || form2Dto === undefined) {
-            throw new Error('Required parameter form2Dto was null or undefined when calling updateForm2.');
+        if (financialFormDto === null || financialFormDto === undefined) {
+            throw new Error('Required parameter financialFormDto was null or undefined when calling updateFinancialForm.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -839,10 +762,10 @@ export class DefaultService implements DefaultServiceInterface {
         }
 
         let localVarPath = `/requests/${this.configuration.encodeParam({name: "requestId", value: requestId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/form2`;
-        return this.httpClient.request<Form2Dto>('patch', `${this.configuration.basePath}${localVarPath}`,
+        return this.httpClient.request<FinancialFormDto>('patch', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: form2Dto,
+                body: financialFormDto,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,
@@ -854,22 +777,22 @@ export class DefaultService implements DefaultServiceInterface {
     }
 
     /**
-     * Update Form3 details
-     * Update Form3 details
+     * Update PersonaForm details
+     * Update PersonaForm details
      * @param requestId 
-     * @param form3Dto 
+     * @param personaFormDto 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateForm3(requestId: string, form3Dto: Form3Dto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Form3Dto>;
-    public updateForm3(requestId: string, form3Dto: Form3Dto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Form3Dto>>;
-    public updateForm3(requestId: string, form3Dto: Form3Dto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Form3Dto>>;
-    public updateForm3(requestId: string, form3Dto: Form3Dto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public updatePersonaForm(requestId: string, personaFormDto: PersonaFormDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<PersonaFormDto>;
+    public updatePersonaForm(requestId: string, personaFormDto: PersonaFormDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<PersonaFormDto>>;
+    public updatePersonaForm(requestId: string, personaFormDto: PersonaFormDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<PersonaFormDto>>;
+    public updatePersonaForm(requestId: string, personaFormDto: PersonaFormDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (requestId === null || requestId === undefined) {
-            throw new Error('Required parameter requestId was null or undefined when calling updateForm3.');
+            throw new Error('Required parameter requestId was null or undefined when calling updatePersonaForm.');
         }
-        if (form3Dto === null || form3Dto === undefined) {
-            throw new Error('Required parameter form3Dto was null or undefined when calling updateForm3.');
+        if (personaFormDto === null || personaFormDto === undefined) {
+            throw new Error('Required parameter personaFormDto was null or undefined when calling updatePersonaForm.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -917,11 +840,90 @@ export class DefaultService implements DefaultServiceInterface {
             }
         }
 
-        let localVarPath = `/requests/${this.configuration.encodeParam({name: "requestId", value: requestId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/form3`;
-        return this.httpClient.request<Form3Dto>('patch', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/requests/${this.configuration.encodeParam({name: "requestId", value: requestId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/persona-form`;
+        return this.httpClient.request<PersonaFormDto>('patch', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: form3Dto,
+                body: personaFormDto,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                transferCache: localVarTransferCache,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Update QuestionForm details
+     * Update QuestionForm details
+     * @param requestId 
+     * @param questionFormDto 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public updateQuestionForm(requestId: string, questionFormDto: QuestionFormDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<QuestionFormDto>;
+    public updateQuestionForm(requestId: string, questionFormDto: QuestionFormDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<QuestionFormDto>>;
+    public updateQuestionForm(requestId: string, questionFormDto: QuestionFormDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<QuestionFormDto>>;
+    public updateQuestionForm(requestId: string, questionFormDto: QuestionFormDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (requestId === null || requestId === undefined) {
+            throw new Error('Required parameter requestId was null or undefined when calling updateQuestionForm.');
+        }
+        if (questionFormDto === null || questionFormDto === undefined) {
+            throw new Error('Required parameter questionFormDto was null or undefined when calling updateQuestionForm.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+        let localVarTransferCache: boolean | undefined = options && options.transferCache;
+        if (localVarTransferCache === undefined) {
+            localVarTransferCache = true;
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/requests/${this.configuration.encodeParam({name: "requestId", value: requestId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/QuestionForm`;
+        return this.httpClient.request<QuestionFormDto>('patch', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                body: questionFormDto,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

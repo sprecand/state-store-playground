@@ -5,5 +5,8 @@ properties:
     format: uuid
   name:
     type: string
-  detail:
+  description:
     type: string
+
+
+    ASP

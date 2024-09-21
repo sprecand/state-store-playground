@@ -1,0 +1,17 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+  name:
+    type: string
+  description:
+    type: string
+  address:
+    type: string
+  cost:
+    type: string
+    format: integer
+  date-of-sale:
+    type: string
+    format: date

@@ -18,8 +18,8 @@ The aim of this repo is to test multiple ways to us a state store for a web form
 - A request is a three page form with validation on each page
 
 #### Requirements
-- Form validation is done in frontend (user friendly) and in backend (as little logic as possible un the frontend)
-- No security is needed as it is just a playground/poc
+- Form validation is done in frontend (user friendly) and in backend (script kiddie unfriendly)
+- Security is not regarded as it is just a playground/poc
 - Backend is a Spring Boot App
 - Frontend is Angular
 

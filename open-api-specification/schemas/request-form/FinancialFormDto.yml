@@ -1,0 +1,10 @@
+type: object
+properties:
+  occupation:
+    type: string
+  name-of-employer:
+    type: string
+  wealth:
+    type: number
+  yearly-income:
+    type: number

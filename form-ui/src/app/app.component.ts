@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { RequestOverviewComponent } from './request-overview/request-overview.component';
-import { ItemOverviewComponent } from './item-overview/item-overview.component';
+import { RealEstateOverviewComponent } from './real-estate-overview/real-estate-overview.component';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +10,10 @@ import { ItemOverviewComponent } from './item-overview/item-overview.component';
     RouterLink,
     RouterOutlet, 
     RequestOverviewComponent, 
-    ItemOverviewComponent
+    RealEstateOverviewComponent
   ],
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'form-ui';
+  title = 'State Store Demo App';
 }
