@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -22,14 +23,59 @@ public class MockDataUtil {
     private List<RealEstateDto> realEstateDtoList = new ArrayList<>();
     private List<RealEstateOverviewDto> realEstateOverviewDtoList = new ArrayList<>();
 
+    private static final UUID villaId = UUID.randomUUID();
+    private static final UUID seeId = UUID.randomUUID();
+    private static final UUID wqId = UUID.randomUUID();
+
     @PostConstruct
     private void init(){
-        realEstateOverviewDtoList.add(new RealEstateOverviewDto().id(UUID.randomUUID()).name("Villa am Hang").description("Mit Tennisplatz"));
-        realEstateOverviewDtoList.add(new RealEstateOverviewDto().id(UUID.randomUUID()).name("Wohnung am See").description("Migros im Haus"));
-        realEstateOverviewDtoList.add(new RealEstateOverviewDto().id(UUID.randomUUID()).name("WG im Zentrum"));
-        realEstateDtoList.add(new RealEstateDto().id(UUID.randomUUID()).name("Villa am Hang").description("Mit Tennisplatz"));
-        realEstateDtoList.add(new RealEstateDto().id(UUID.randomUUID()).name("Wohnung am See").description("Migros im Haus"));
-        requestOverviewDtoList.add(new RequestOverviewDto().id(UUID.randomUUID()).name("Bewerbung für WG Zimmer"));
-        requestDtoList.add(new RequestDto().id(UUID.randomUUID()).name("Bewerbung für WG Zimmer").detail("Sind Katzen erlaubt?"));
+        realEstateOverviewDtoList.add(new RealEstateOverviewDto()
+            .id(villaId)
+            .name("Villa am Hang")
+            .description("Mit Tennisplatz")
+            .address("Zürichbergstrasse 99")
+            .cost(20000000));
+        realEstateDtoList.add(new RealEstateDto()
+            .id(villaId)
+            .name("Villa am Hang")
+            .description("Mit Tennisplatz")
+            .address("Zürichbergstrasse 99")
+            .cost(20000000)
+            .dateOfSale(LocalDate.now().plusMonths(4)));
+
+        realEstateOverviewDtoList.add(new RealEstateOverviewDto()
+            .id(seeId)
+            .name("Wohnung am See")
+            .description("Migros im Haus")
+            .address("Engestrasse 11")
+            .cost(3500000));
+        realEstateDtoList.add(new RealEstateDto()
+            .id(seeId)
+            .name("Wohnung am See")
+            .description("Migros im Haus")
+            .address("Engestrasse 11")
+            .cost(3500000)
+            .dateOfSale(LocalDate.now().plusMonths(3).plusDays(15)));
+
+        realEstateOverviewDtoList.add(new RealEstateOverviewDto()
+            .id(wqId)
+            .name("WG im Zentrum")
+            .description("Zentrale Lage")
+            .address("Langstrasse 90")
+            .cost(720));
+        realEstateDtoList.add(new RealEstateDto()
+            .id(wqId)
+            .name("WG im Zentrum")
+            .description("Zentrale Lages")
+            .address("Langstrasse 90")
+            .cost(720)
+            .dateOfSale(LocalDate.now().plusMonths(1).plusDays(4)));
+        requestOverviewDtoList.add(new RequestOverviewDto()
+            .id(UUID.randomUUID())
+            .name("Bewerbung für WG Zimmer"));
+        requestDtoList.add(new RequestDto()
+            .id(UUID.randomUUID())
+            .name("Bewerbung für WG Zimmer")
+            .detail("Sind Katzen erlaubt?"));
     }
 }

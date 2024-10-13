@@ -12,6 +12,6 @@ properties:
   cost:
     type: string
     format: integer
-  date-of-sale:
+  dateOfSale:
     type: string
     format: date

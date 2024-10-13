@@ -57,7 +57,7 @@ paths:
                   $ref: ./schemas/RequestOverviewDto.yml
   /requests/{requestId}:
     get:
-      operationId: getRequestById
+      operationId: findRequestById
       summary: Retrieve a request by its ID
       description: Retrieve a request by its ID
       parameters:

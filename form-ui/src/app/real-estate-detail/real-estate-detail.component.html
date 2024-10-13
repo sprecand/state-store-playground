@@ -1,0 +1,35 @@
+<div class="bg-gray-800 min-h-screen py-8">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl">
+        <div class="bg-gray-700 rounded-lg shadow-md overflow-hidden p-6">
+            <h2 class="text-3xl font-bold text-white mb-4">{{ realEstateDetail()?.name }}</h2>
+            <p class="text-white text-lg mb-6">{{ realEstateDetail()?.description }}</p>
+
+            <div class="space-y-4">
+                <div>
+                    <h3 class="text-white font-semibold">Address:</h3>
+                    <p class="text-white">{{ realEstateDetail()?.address }}</p>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold">Cost:</h3>
+                    <p class="text-white">{{ realEstateDetail()?.cost}}</p>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold">Date of Sale:</h3>
+                    <p class="text-white">{{ realEstateDetail()?.dateOfSale | date:'dd.MM.yyyy' }}</p>
+
+                </div>
+            </div>
+
+            <div class="flex justify-end mt-6">
+                <button (click)="addRequest(realEstateDetail()?.id)"
+                    class="text-white bg-gray-600 hover:bg-gray-500 rounded-md px-4 py-2 text-sm font-medium">
+                    Create Request
+                </button>
+                <button (click)="goBack()"
+                    class="text-white bg-gray-600 hover:bg-gray-500 rounded-md px-4 py-2 text-sm font-medium">
+                    Back to Overview
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

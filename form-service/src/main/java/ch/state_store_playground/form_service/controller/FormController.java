@@ -48,7 +48,7 @@ public class FormController implements RequestsApi {
 	}
 
 	@Override
-	public ResponseEntity<RequestDto> _getRequestById(String requestId) {
+	public ResponseEntity<RequestDto> _findRequestById(String requestId) {
 		return ResponseEntity.ok(mockDataUtil.getRequestDtoList().get(0));
 	}
 

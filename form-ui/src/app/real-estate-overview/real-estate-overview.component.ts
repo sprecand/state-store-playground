@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { DefaultService, RealEstateOverviewDto } from '../core/modules/openapi';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'real-estate-overview',
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class RealEstateOverviewComponent implements OnInit {
   private defaultService: DefaultService = inject(DefaultService);
+  private router = inject(Router);
   realEstateList = signal<RealEstateOverviewDto[]>([]);
 
   ngOnInit() {
@@ -21,7 +23,6 @@ export class RealEstateOverviewComponent implements OnInit {
     this.defaultService.findRealEstate().subscribe({
       next: (data) => {
         this.realEstateList.set(data);
-        
       },
       error: (error) => console.error('Error fetching real estate list', error)});
   }
@@ -30,13 +31,13 @@ export class RealEstateOverviewComponent implements OnInit {
     if (!id){
       return;
     }
-    console.log('Show details for real estate', id);
+    this.router.navigate(['/real-estates', id]);
   }
 
   addRequest(id: string | undefined) {
     if (!id){
       return;
     }
-    console.log('Add request for real estate', id);
+    this.router.navigate(['/requests', id]);
   }
 }
